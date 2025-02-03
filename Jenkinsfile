@@ -18,15 +18,8 @@ node {
 
     stage('Run Python in Docker') {
         sh '''
-        WORKSPACE=$(pwd)
-        echo "Running in workspace: $WORKSPACE"
-        ls -la $WORKSPACE  # Ensure files exist before running Docker
-
-        echo "Checking inside Docker container..."
-        docker run --rm -v "$WORKSPACE:/app" -w /app python:3.9 ls -la /app
-
         echo "Now running Python..."
-        docker run --rm -v "$WORKSPACE:/app" -w /app python:3.9 python3 app.py
+        docker run --rm -v /var/jenkins_home/workspace/cloud_test:/app -w /app python:3.9 python3 app.py
         '''
     }
 }
