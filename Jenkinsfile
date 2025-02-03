@@ -1,10 +1,10 @@
 node {
     stage('Cleanup Workspace') {
-        deleteDir()  // Clears old files
+        deleteDir()
     }
 
     stage('Checkout Code') {
-        checkout scm  // Clone the repo
+        checkout scm
     }
 
     stage('Fix Permissions') {
@@ -13,6 +13,9 @@ node {
     }
 
     stage('Run Python in Docker') {
-        sh 'docker run --rm -v "$(pwd)":/app -w /app python:3.9 python3 app.py'
+        sh '''
+        WORKSPACE="$(pwd)"
+        docker run --rm -v "${WORKSPACE}:/app" -w /app python:3.9 python3 app.py
+        '''
     }
 }
