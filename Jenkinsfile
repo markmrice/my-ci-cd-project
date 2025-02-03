@@ -3,6 +3,10 @@ node {
         deleteDir()
     }
 
+    stage('Verify Files Before Running Docker') {
+        sh 'ls -la'  // List all files in the workspace
+    }
+
     stage('Checkout Code') {
         checkout scm
     }
@@ -19,9 +23,7 @@ node {
         '''
     }
 
-    stage('Verify Files Before Running Docker') {
-        sh 'ls -la'  // List all files in the workspace
-    }
+
 
     stage('Run Python in Docker') {
         sh '''
