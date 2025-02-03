@@ -1,4 +1,8 @@
 node {
+    stage('Check Git Installation') {
+        sh 'git --version || echo "Git not found"'
+    }
+
     stage('Fix Permissions') {
         sh 'chown -R jenkins:jenkins .'  // Ensure Jenkins user owns all files
         sh 'chmod +x app.py'  // Grant execution permissions
