@@ -1,9 +1,13 @@
 node {
     stage('Checkout') {
-        checkout scm  // Ensures the latest code is pulled
+        checkout scm
     }
 
-    stage('Python') {
-        sh 'python3 app.py'  // Use python3 to ensure it's available
+    stage('Verify Files in Workspace') {
+        sh 'ls -la'  // List all files in the Jenkins workspace
+    }
+
+    stage('Run Python Script') {
+        sh 'python3 app.py'  // Run Python script
     }
 }
