@@ -12,6 +12,13 @@ node {
         sh 'chmod +x app.py'  
     }
 
+    stage('Grant Jenkins Access to Docker') {
+        sh '''
+        usermod -aG docker jenkins
+        newgrp docker
+        '''
+    }
+
     stage('Verify Files Before Running Docker') {
         sh 'ls -la'  // List all files in the workspace
     }
