@@ -1,4 +1,8 @@
 node {
+    stage('Cleanup Workspace') {
+        deleteDir()  // Clears all files before checkout
+    }
+
     stage('Check Git Installation') {
         sh 'git --version || echo "Git not found"'
     }
