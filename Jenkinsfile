@@ -21,7 +21,7 @@ node {
         WORKSPACE=$(pwd)
         echo "Running in workspace: $WORKSPACE"
         ls -la $WORKSPACE  # Ensure files exist before running Docker
-        docker run --rm -v "$WORKSPACE:/app" -w /app python:3.9 python3 app.py
+        docker run --rm -v "$WORKSPACE:/app" -w /app python:3.9 python app.py
         '''
     }
 }
